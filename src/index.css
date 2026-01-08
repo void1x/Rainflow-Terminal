@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  @apply bg-bg-primary text-text-primary font-sans antialiased;
+  background: linear-gradient(135deg, #0a0e27 0%, #101430 50%, #0a0e27 100%);
+  background-attachment: fixed;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border-color rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-tertiary;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold;
+}
+
+/* Cards */
+.card {
+  @apply bg-surface border border-border-color rounded-lg transition-all duration-200;
+}
+
+.card:hover {
+  @apply shadow-card-hover border-primary border-opacity-50;
+}
+
+/* Badges */
+.badge-success {
+  @apply px-2 py-1 rounded-md text-xs font-semibold bg-success bg-opacity-10 text-success;
+}
+
+.badge-danger {
+  @apply px-2 py-1 rounded-md text-xs font-semibold bg-danger bg-opacity-10 text-danger;
+}
+
+.badge-primary {
+  @apply px-2 py-1 rounded-md text-xs font-semibold bg-primary bg-opacity-10 text-primary;
+}
+
+/* Buttons */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-opacity-90 focus:ring-primary;
+}
+
+.btn-secondary {
+  @apply bg-surface hover:bg-surface-hover text-text-primary border border-border-color;
+}
+
+/* Input */
+input {
+  @apply bg-surface border border-border-color rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+}
+
+.price-up {
+  @apply text-success;
+}
+
+.price-down {
+  @apply text-danger;
+}
