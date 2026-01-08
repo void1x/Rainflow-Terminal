@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#0a0e27',
-        'bg-secondary': '#101430',
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
         'bg-tertiary': '#151d3b',
-        'surface': '#1a202c',
+        'surface': 'var(--surface)',
         'surface-hover': '#202d4d',
-        'border-color': '#2d3748',
-        'text-primary': '#f7fafc',
-        'text-secondary': '#cbd5e0',
+        'border-color': 'var(--border-color)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
         'text-tertiary': '#a0aec0',
         'success': '#10b981',
         'success-light': '#d1fae5',
