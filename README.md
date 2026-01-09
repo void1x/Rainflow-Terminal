@@ -165,6 +165,8 @@ src/
 
 | Route | Feature | Description |
 |-------|---------|-------------|
+| `/login` | Login | Sign in with email or Google OAuth |
+| `/signup` | Sign Up | Create account with email or Google OAuth |
 | `/` | Dashboard | Markets overview with key insights |
 | `/stock/:symbol` | Stock Details | Advanced charts and real-time data |
 | `/portfolio` | Portfolio | Position management and metrics |
@@ -183,6 +185,7 @@ src/
 |-----------|---------|---------|
 | React | 18.2.0 | UI Framework |
 | React Router | 6.20.0 | Client-side routing |
+| @react-oauth/google | Latest | Google OAuth authentication |
 | Vite | 7.3.1 | Build tool & dev server |
 | TailwindCSS | 3.3.6 | Utility-first CSS framework |
 | Recharts | 2.10.3 | Charts & graphs library |
@@ -211,13 +214,21 @@ cd c:\Users\rain\Rainflow-Terminal
 npm install
 ```
 
-3. **Start Development Server**
+3. **Configure Google OAuth** (Optional but recommended)
+   - Get your Google Client ID from [Google Cloud Console](https://console.cloud.google.com/)
+   - Create `.env.local` file:
+   ```
+   VITE_GOOGLE_CLIENT_ID=your_client_id_here
+   ```
+   - See [AUTH_SETUP.md](./AUTH_SETUP.md) for detailed instructions
+
+4. **Start Development Server**
 ```bash
 npm run dev
 ```
 
-4. **Open in Browser**
-Navigate to `http://localhost:5173/`
+5. **Open in Browser**
+Navigate to `http://localhost:5173/` (redirects to login page)
 
 ---
 
@@ -461,11 +472,28 @@ Manages toast notifications across the application.
 
 ---
 
+## 🔐 Authentication
+
+The application includes a complete authentication system:
+
+### Features
+- **Email/Password Authentication**: Local account creation and login
+- **Google OAuth**: One-click sign-in with Google
+- **Protected Routes**: Dashboard and all features require authentication
+- **User Profile**: Display user information from Google or email signup
+- **Secure Logout**: Sign out button in navbar
+
+### Setup
+See [AUTH_SETUP.md](./AUTH_SETUP.md) for complete Google OAuth configuration guide.
+
+---
+
 ## 🔮 Future Enhancements
 
 - [ ] Real API integration (Alpha Vantage, Finnhub, etc.)
 - [ ] WebSocket for real-time data streaming
-- [ ] User authentication and profiles
+- [ ] Backend authentication server
+- [ ] User profiles and preferences
 - [ ] Advanced technical analysis indicators
 - [ ] Options and derivatives trading
 - [ ] Backtesting engine for strategies
@@ -473,6 +501,10 @@ Manages toast notifications across the application.
 - [ ] Social trading and social feeds
 - [ ] Machine learning price predictions
 - [ ] Custom technical indicators builder
+- [ ] Email verification and password reset
+- [ ] Two-factor authentication (2FA)
+- [ ] GitHub OAuth integration
+- [ ] Session management and auto-logout
 
 ---
 
@@ -537,8 +569,24 @@ To integrate real market data, connect to:
 - **Yahoo Finance API**
 - **IEX Cloud**
 
+### Authentication Security Notes
+⚠️ **Development Only**: The current implementation stores user data in **localStorage** for demo purposes.
+
+For **production**:
+1. Implement a proper backend API with authentication
+2. Use secure HTTP-only cookies for tokens
+3. Never store sensitive data in localStorage
+4. Implement JWT token validation on the server
+5. Add CSRF protection
+6. Use HTTPS only
+7. Implement rate limiting on auth endpoints
+8. Add email verification
+9. Implement secure password hashing (bcrypt/argon2)
+10. Add session management with auto-logout
+
 ### Data Storage
 All user data is persisted in browser **localStorage**:
+- User authentication (email, name, profile picture)
 - Portfolio positions
 - Watchlist items
 - Price alerts
@@ -579,6 +627,7 @@ npm install && npm run dev
 
 ---
 
-**Last Updated**: January 8, 2026  
+**Last Updated**: January 9, 2026  
+**Latest**: Added Google OAuth & Email/Password Authentication  
 **Repository**: [GitHub - void1x/Rainflow-Terminal](https://github.com/void1x/Rainflow-Terminal)  
 **Status**: Active Development ✅
